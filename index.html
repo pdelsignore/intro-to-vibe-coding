@@ -89,19 +89,6 @@
     .d8 { transition-delay: 0.75s; }
     .d9 { transition-delay: 0.85s; }
 
-    /* Auto-sequential delays for slides 4 & 5 (no click required) */
-    .ds1 { transition-delay: 0.20s; }
-    .ds2 { transition-delay: 0.90s; }
-    .ds3 { transition-delay: 1.60s; }
-    .ds4 { transition-delay: 2.30s; }
-
-    /* Fade-only animation (no Y movement) for sequential list items */
-    .fade-anim {
-      opacity: 0;
-      transition: opacity 1.0s cubic-bezier(0.16,1,0.3,1);
-    }
-    .slide.active .fade-anim { opacity: 1; }
-
     /* ── Slide backgrounds ── */
     .slide-bg {
       position: absolute; inset: 0; z-index: 0;
@@ -351,6 +338,129 @@
 
     /* Bracketed accent text */
     .bracket { color: var(--accent); font-style: normal; }
+
+    /* Slide 12, 15–17 — click-to-reveal rows (counter unchanged; forward advances reveal) */
+    #slide-12 .vibe-item,
+    #slide-15 .vibe-item,
+    #slide-16 .vibe-item,
+    #slide-17 .vibe-item {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    #slide-12 .vibe-item.revealed,
+    #slide-15 .vibe-item.revealed,
+    #slide-16 .vibe-item.revealed,
+    #slide-17 .vibe-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #slide-12 .flow-hint {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    #slide-12 .flow-hint.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Slides 15–17 — centered title + vibe-scale copy (match) */
+    #slide-15 .rel,
+    #slide-16 .rel,
+    #slide-17 .rel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    #slide-15 .section-headline,
+    #slide-16 .section-headline,
+    #slide-17 .section-headline { margin-bottom: 0.5rem; }
+    #slide-15 .vibe-list,
+    #slide-16 .vibe-list,
+    #slide-17 .vibe-list {
+      width: 100%;
+      max-width: 42rem;
+      margin: 2rem auto 0;
+      text-align: left;
+    }
+    #slide-15 .vibe-item,
+    #slide-16 .vibe-item,
+    #slide-17 .vibe-item {
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    #slide-15 .vibe-text,
+    #slide-16 .vibe-text,
+    #slide-17 .vibe-text {
+      line-height: 1.55;
+    }
+    #slide-15 .bracket,
+    #slide-16 .bracket,
+    #slide-17 .bracket {
+      color: #b8a5e8;
+    }
+
+    /* Slides 15–17: selectable / copyable text (deck click-nav otherwise blocks selection) */
+    #slide-15,
+    #slide-16,
+    #slide-17 {
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
+    /* Vibe coding examples (dense reference slide) */
+    .examples-slide .rel { text-align: center; }
+    .examples-slide .examples-body { margin-top: 0; }
+    .examples-slide .prompt-headline { margin-bottom: 5.7rem; }
+    .examples-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem 2.5rem;
+      text-align: left;
+      max-width: 920px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width: 720px) {
+      .examples-columns { grid-template-columns: 1fr; max-width: 36rem; }
+    }
+    .examples-block { break-inside: avoid; }
+    .examples-cat {
+      font-family: var(--f-display);
+      font-size: clamp(0.88rem, 1.25vw, 1.05rem);
+      font-weight: 300;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin: 0 0 0.45rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .examples-block:first-child .examples-cat { margin-top: 0; }
+    .examples-ul {
+      list-style: none;
+      margin: 0 0 1rem;
+      padding: 0;
+    }
+    .examples-ul li {
+      font-size: clamp(0.68rem, 0.95vw, 0.82rem);
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.5;
+      padding: 0.18rem 0 0.18rem 1rem;
+      position: relative;
+    }
+    .examples-ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      opacity: 0.55;
+      font-size: 0.85em;
+    }
   </style>
 </head>
 <body>
@@ -382,23 +492,23 @@
     <div class="rel" style="display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;">
       <span class="sec-label anim d1">Today's Agenda</span>
       <ul class="trend-list">
-        <li class="trend-row anim d2">
+        <li class="trend-row anim" style="transition-delay:0.5s;">
           <span class="trend-num">01</span>
           <span class="trend-name">The moment we are in</span>
         </li>
-        <li class="trend-row anim d3">
+        <li class="trend-row anim" style="transition-delay:1.5s;">
           <span class="trend-num">02</span>
           <span class="trend-name">What is vibe coding?</span>
         </li>
-        <li class="trend-row anim d4">
+        <li class="trend-row anim" style="transition-delay:2.5s;">
           <span class="trend-num">03</span>
           <span class="trend-name">Build an App</span>
         </li>
-        <li class="trend-row anim d5">
+        <li class="trend-row anim" style="transition-delay:3.5s;">
           <span class="trend-num">04</span>
           <span class="trend-name">Vibe coding landscape</span>
         </li>
-        <li class="trend-row anim d6">
+        <li class="trend-row anim" style="transition-delay:4.5s;">
           <span class="trend-num">05</span>
           <span class="trend-name">Getting started</span>
         </li>
@@ -430,28 +540,28 @@
     <div class="rel" style="display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;">
       <span class="sec-label anim d1">Software Eating The World</span>
       <ul class="auto-list">
-        <li class="auto-item fade-anim ds1">
+        <li class="auto-item anim" style="transition-delay:0.5s;">
           <span class="auto-bullet">—</span>
           <span class="auto-text-wrap">
             <span class="auto-name">Amazon</span>
             <span class="auto-sub">disruption of retail and bookstores</span>
           </span>
         </li>
-        <li class="auto-item fade-anim ds2">
+        <li class="auto-item anim" style="transition-delay:1.5s;">
           <span class="auto-bullet">—</span>
           <span class="auto-text-wrap">
             <span class="auto-name">Netflix</span>
             <span class="auto-sub">disruption of video stores</span>
           </span>
         </li>
-        <li class="auto-item fade-anim ds3">
+        <li class="auto-item anim" style="transition-delay:2.5s;">
           <span class="auto-bullet">—</span>
           <span class="auto-text-wrap">
             <span class="auto-name">Spotify, iTunes, Pandora</span>
             <span class="auto-sub">disruption of music sales</span>
           </span>
         </li>
-        <li class="auto-item fade-anim ds4">
+        <li class="auto-item anim" style="transition-delay:3.5s;">
           <span class="auto-bullet">—</span>
           <span class="auto-text-wrap">
             <span class="auto-name">Skype</span>
@@ -472,25 +582,25 @@
     <div class="rel" style="display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;">
       <span class="sec-label anim d1">The Emergence of AI</span>
       <ul class="auto-list">
-        <li class="auto-item fade-anim ds1">
+        <li class="auto-item anim" style="transition-delay:0.5s;">
           <span class="auto-bullet">—</span>
           <span class="auto-text-wrap">
             <span class="auto-name">Emergence of Gen AI</span>
           </span>
         </li>
-        <li class="auto-item fade-anim ds2">
+        <li class="auto-item anim" style="transition-delay:1.5s;">
           <span class="auto-bullet">—</span>
           <span class="auto-text-wrap">
             <span class="auto-name">ChatGPT moment</span>
           </span>
         </li>
-        <li class="auto-item fade-anim ds3">
+        <li class="auto-item anim" style="transition-delay:2.5s;">
           <span class="auto-bullet">—</span>
           <span class="auto-text-wrap">
             <span class="auto-name">Rise of reasoning models</span>
           </span>
         </li>
-        <li class="auto-item fade-anim ds4">
+        <li class="auto-item anim" style="transition-delay:3.5s;">
           <span class="auto-bullet">—</span>
           <span class="auto-text-wrap">
             <span class="auto-name">LLMs Coding</span>
@@ -621,30 +731,93 @@
       <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2560&auto=format&fit=crop" alt="" aria-hidden="true" />
     </div>
     <div class="rel" style="display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;">
-      <span class="sec-label anim d1">Concept</span>
-      <h2 class="section-headline anim d2">What is <em>vibe coding?</em></h2>
+      <span class="sec-label">Concept</span>
+      <h2 class="section-headline">What is <em>vibe coding?</em></h2>
       <ul class="vibe-list">
-        <li class="vibe-item anim d3">
+        <li class="vibe-item">
           <span class="vibe-arrow">→</span>
           <span class="vibe-text">Describe what you want in plain English.</span>
         </li>
-        <li class="vibe-item anim d4">
+        <li class="vibe-item">
           <span class="vibe-arrow">→</span>
           <span class="vibe-text">AI writes the code.</span>
         </li>
-        <li class="vibe-item anim d5">
+        <li class="vibe-item">
           <span class="vibe-arrow">→</span>
           <span class="vibe-text">You iterate on what you see.</span>
         </li>
       </ul>
-      <span class="flow-hint anim d6">describe<span>→</span>see result<span>→</span>describe again</span>
+      <span class="flow-hint">describe<span>→</span>see result<span>→</span>describe again</span>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════
-       SLIDE 11 — LET'S BUILD SOMETHING
+       SLIDE 11 — VIBE CODING EXAMPLES
        ══════════════════════════════════════════ -->
-  <section class="slide" id="slide-13">
+  <section class="slide prompt-slide examples-slide" id="slide-13">
+    <div class="slide-bg">
+      <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2560&auto=format&fit=crop" alt="" aria-hidden="true" />
+    </div>
+    <div class="rel" style="width:100%;max-width:1120px;">
+      <h2 class="prompt-headline anim d1">Vibe Coding <em style="font-style:italic;color:var(--accent);">examples</em></h2>
+      <div class="examples-body anim d2">
+        <div class="examples-columns">
+          <div class="examples-block">
+            <h3 class="examples-cat">Data &amp; Visualization</h3>
+            <ul class="examples-ul">
+              <li>Interactive charts &amp; graphs</li>
+              <li>Dashboards from data sources</li>
+            </ul>
+          </div>
+          <div class="examples-block">
+            <h3 class="examples-cat">Creative &amp; Media</h3>
+            <ul class="examples-ul">
+              <li>Animated SVG illustrations</li>
+              <li>Music visualizers</li>
+              <li>Digital zines or interactive stories</li>
+            </ul>
+          </div>
+          <div class="examples-block">
+            <h3 class="examples-cat">Documents &amp; reports</h3>
+            <ul class="examples-ul">
+              <li>Branded PDF or HTML reports</li>
+              <li>Auto-generated slide decks</li>
+              <li>Newsletters and email templates</li>
+            </ul>
+          </div>
+          <div class="examples-block">
+            <h3 class="examples-cat">Productivity &amp; Workflow</h3>
+            <ul class="examples-ul">
+              <li>Personal CRM or contact trackers</li>
+              <li>Habit or goal trackers</li>
+              <li>Meeting agenda generators</li>
+              <li>Markdown-based wikis or knowledge bases</li>
+            </ul>
+          </div>
+          <div class="examples-block">
+            <h3 class="examples-cat">Games &amp; Interactive experiences</h3>
+            <ul class="examples-ul">
+              <li>Simple browser games (trivia, word games, puzzle)</li>
+              <li>Interactive quizzes and assessments</li>
+              <li>Escape room-style logic puzzles</li>
+            </ul>
+          </div>
+          <div class="examples-block">
+            <h3 class="examples-cat">Prototypes &amp; Mockups</h3>
+            <ul class="examples-ul">
+              <li>Clickable UI prototypes</li>
+              <li>Design system component libraries</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 12 — LET'S BUILD SOMETHING
+       ══════════════════════════════════════════ -->
+  <section class="slide" id="slide-14">
     <div class="slide-bg">
       <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2560&auto=format&fit=crop" alt="" aria-hidden="true" />
     </div>
@@ -657,110 +830,88 @@
   <!-- ══════════════════════════════════════════
        SLIDE 12 — PLANNING PHASE / 3Q FRAMEWORK
        ══════════════════════════════════════════ -->
-  <section class="slide prompt-slide" id="slide-14"
-    style="justify-content:flex-start;align-items:flex-start;text-align:left;">
+  <section class="slide prompt-slide" id="slide-15">
     <div class="slide-bg">
       <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=2560&auto=format&fit=crop" alt="" aria-hidden="true" />
     </div>
     <div class="rel" style="width:100%;max-width:900px;">
-      <span class="prompt-eyebrow anim d1">The Planning Phase</span>
-      <h2 class="prompt-headline anim d2">Story Template: The 3 Question Framework</h2>
-      <span class="prompt-intro anim d3">Write a comprehensive prompt that I can use to build this app&hellip;</span>
-      <ol class="prompt-qs">
-        <li class="prompt-q anim d4">
-          <span class="prompt-q-label">01 &mdash; What problem am I trying to solve?</span>
-          <p class="prompt-q-body">
-            I want to build an app that <span class="bracket">[describe the problem you're solving in plain English]</span>.
-          </p>
+      <span class="sec-label">The Planning Phase</span>
+      <h2 class="section-headline">The <em>3 Question</em> Framework</h2>
+      <ul class="vibe-list">
+        <li class="vibe-item">
+          <span class="vibe-arrow">→</span>
+          <span class="vibe-text">I want to build an app that <span class="bracket">[describe the problem you're solving in plain English]</span>.</span>
         </li>
-        <li class="prompt-q anim d5">
-          <span class="prompt-q-label">02 &mdash; Who is this for?</span>
-          <p class="prompt-q-body">
-            It's for <span class="bracket">[specific person or group]</span> who struggle with <span class="bracket">[their pain point]</span>.
-          </p>
+        <li class="vibe-item">
+          <span class="vibe-arrow">→</span>
+          <span class="vibe-text">It's for <span class="bracket">[specific person or group]</span> who struggle with <span class="bracket">[their pain point]</span>.</span>
         </li>
-        <li class="prompt-q anim d6">
-          <span class="prompt-q-label">03 &mdash; How should the solution feel?</span>
-          <p class="prompt-q-body">
-            The app should feel <span class="bracket">[emotional quality]</span> and look <span class="bracket">[visual style]</span>.
-          </p>
+        <li class="vibe-item">
+          <span class="vibe-arrow">→</span>
+          <span class="vibe-text">The app should feel <span class="bracket">[emotional quality]</span> and look <span class="bracket">[visual style]</span>.</span>
         </li>
-      </ol>
+      </ul>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════
        SLIDE 13 — EXAMPLE PROMPT 1: BUDGET DASHBOARD
        ══════════════════════════════════════════ -->
-  <section class="slide prompt-slide" id="slide-15"
-    style="justify-content:flex-start;align-items:flex-start;text-align:left;">
+  <section class="slide prompt-slide" id="slide-16">
     <div class="slide-bg">
       <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2560&auto=format&fit=crop" alt="" aria-hidden="true" />
     </div>
-    <div class="rel" style="width:100%;max-width:980px;">
-      <span class="prompt-eyebrow anim d1">Example Prompt 01 &middot; Budget Dashboard</span>
-      <span class="prompt-intro anim d2">Write a comprehensive prompt that I can use to build this app&hellip;</span>
-      <ol class="prompt-qs">
-        <li class="prompt-q anim d3">
-          <span class="prompt-q-label">01</span>
-          <p class="prompt-q-body">
-            I want to build a <span class="bracket">[budget variance dashboard app to better manage my company's spend. It should have a table with these columns: Category, Planned Budget, Actual Spend, Variance (dollar amount), and Variance (percentage). For now, pre-populate it with 6 sample rows using realistic finance categories like Payroll, Marketing, Software Licenses, Travel, Office Supplies, and Consulting Fees. Make the variance cells green when under budget and red when over budget.]</span>
-          </p>
+    <div class="rel" style="width:100%;max-width:900px;">
+      <span class="sec-label">Example Prompt 01</span>
+      <h2 class="section-headline">Budget Dashboard</h2>
+      <ul class="vibe-list">
+        <li class="vibe-item">
+          <span class="vibe-arrow">→</span>
+          <span class="vibe-text">I want to build a <span class="bracket">budget variance dashboard app to better manage my company's spend. It should have a table with these columns: Category, Planned Budget, Actual Spend, Variance (dollar amount), and Variance (percentage). For now, pre-populate it with 6 sample rows using realistic finance categories like Payroll, Marketing, Software Licenses, Travel, Office Supplies, and Consulting Fees. Make the variance cells green when under budget and red when over budget.</span></span>
         </li>
-        <li class="prompt-q anim d4">
-          <span class="prompt-q-label">02</span>
-          <p class="prompt-q-body">
-            It's for <span class="bracket">[my finance department]</span> who struggle with <span class="bracket">[having a centralized visual display of variance]</span>.
-          </p>
+        <li class="vibe-item">
+          <span class="vibe-arrow">→</span>
+          <span class="vibe-text">It's for <span class="bracket">my finance department</span> who struggle with <span class="bracket">having a centralized visual display of variance</span>.</span>
         </li>
-        <li class="prompt-q anim d5">
-          <span class="prompt-q-label">03</span>
-          <p class="prompt-q-body">
-            The app should feel <span class="bracket">[simple, easy to read]</span> and look <span class="bracket">[clean and minimalistic]</span>.
-          </p>
+        <li class="vibe-item">
+          <span class="vibe-arrow">→</span>
+          <span class="vibe-text">The app should feel <span class="bracket">simple, easy to read</span> and look <span class="bracket">clean and minimalistic</span>. Use colors like <span class="bracket">red, green and purple</span>.</span>
         </li>
-      </ol>
+      </ul>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════
-       SLIDE 14 — EXAMPLE PROMPT 2: OKR / KPI TRACKER
+       SLIDE 14 — EXAMPLE PROMPT 2: OKR TRACKER
        ══════════════════════════════════════════ -->
-  <section class="slide prompt-slide" id="slide-16"
-    style="justify-content:flex-start;align-items:flex-start;text-align:left;">
+  <section class="slide prompt-slide" id="slide-17">
     <div class="slide-bg">
       <img src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=2560&auto=format&fit=crop" alt="" aria-hidden="true" />
     </div>
-    <div class="rel" style="width:100%;max-width:980px;">
-      <span class="prompt-eyebrow anim d1">Example Prompt 02 &middot; OKR / KPI Tracker</span>
-      <span class="prompt-intro anim d2">Write a comprehensive prompt that I can use to build this app&hellip;</span>
-      <ol class="prompt-qs">
-        <li class="prompt-q anim d3">
-          <span class="prompt-q-label">01</span>
-          <p class="prompt-q-body">
-            I want to build an app that <span class="bracket">[helps me track my OKRs and KPIs for the year, as I do many tasks throughout the week, but there's no way for me to know if the tasks are aligning with my KPIs. I don't know what the gaps are and what percentage I've completed]</span>.
-          </p>
+    <div class="rel" style="width:100%;max-width:900px;">
+      <span class="sec-label">Example Prompt 02</span>
+      <h2 class="section-headline">OKR Tracker</h2>
+      <ul class="vibe-list">
+        <li class="vibe-item">
+          <span class="vibe-arrow">→</span>
+          <span class="vibe-text">I want to build an app that <span class="bracket">helps me track my OKRs and KPIs for the year, as I do many tasks throughout the week, but there's no way for me to know if the tasks are aligning with my KPIs. I don't know what the gaps are and what percentage I've completed</span>.</span>
         </li>
-        <li class="prompt-q anim d4">
-          <span class="prompt-q-label">02</span>
-          <p class="prompt-q-body">
-            It's for <span class="bracket">[me and my colleagues]</span> who struggle with <span class="bracket">[keeping track of their KPIs]</span>.
-          </p>
+        <li class="vibe-item">
+          <span class="vibe-arrow">→</span>
+          <span class="vibe-text">It's for <span class="bracket">me and my colleagues</span> who struggle with <span class="bracket">keeping track of their KPIs</span>.</span>
         </li>
-        <li class="prompt-q anim d5">
-          <span class="prompt-q-label">03</span>
-          <p class="prompt-q-body">
-            The app should feel <span class="bracket">[simple, easy to read]</span> and look <span class="bracket">[clean and minimalistic]</span>.
-          </p>
+        <li class="vibe-item">
+          <span class="vibe-arrow">→</span>
+          <span class="vibe-text">The app should feel <span class="bracket">simple, easy to read</span> and look <span class="bracket">clean and minimalistic</span>.</span>
         </li>
-      </ol>
+      </ul>
     </div>
   </section>
 
   <!-- ── Navigation ── -->
   <nav id="nav">
     <button id="prev-btn" class="nav-btn" disabled aria-label="Previous slide">←</button>
-    <span id="slide-counter">01 / 16</span>
+    <span id="slide-counter">01 / 17</span>
     <button id="next-btn" class="nav-btn" aria-label="Next slide">→</button>
   </nav>
   <p id="key-hint">← → keys</p>
@@ -778,6 +929,96 @@
 
     function pad(n) { return String(n).padStart(2, '0'); }
 
+    const slide12El = document.getElementById('slide-12');
+    const slide12Idx = slide12El ? slides.indexOf(slide12El) : -1;
+    const slide12RevealEls = slide12El
+      ? [...slide12El.querySelectorAll('.vibe-item'), slide12El.querySelector('.flow-hint')].filter(Boolean)
+      : [];
+    let slide12Reveal = 0;
+
+    const slide15El = document.getElementById('slide-15');
+    const slide15Idx = slide15El ? slides.indexOf(slide15El) : -1;
+    const slide15RevealEls = slide15El ? Array.from(slide15El.querySelectorAll('.vibe-item')) : [];
+    let slide15Reveal = 0;
+
+    const slide16El = document.getElementById('slide-16');
+    const slide16Idx = slide16El ? slides.indexOf(slide16El) : -1;
+    const slide16RevealEls = slide16El ? Array.from(slide16El.querySelectorAll('.vibe-item')) : [];
+    let slide16Reveal = 0;
+
+    const slide17El = document.getElementById('slide-17');
+    const slide17Idx = slide17El ? slides.indexOf(slide17El) : -1;
+    const slide17RevealEls = slide17El ? Array.from(slide17El.querySelectorAll('.vibe-item')) : [];
+    let slide17Reveal = 0;
+
+    function resetSlide12Reveal() {
+      slide12Reveal = 0;
+      slide12RevealEls.forEach(el => el.classList.remove('revealed'));
+    }
+
+    function resetSlide15Reveal() {
+      slide15Reveal = 0;
+      slide15RevealEls.forEach(el => el.classList.remove('revealed'));
+    }
+
+    function resetSlide16Reveal() {
+      slide16Reveal = 0;
+      slide16RevealEls.forEach(el => el.classList.remove('revealed'));
+    }
+
+    function resetSlide17Reveal() {
+      slide17Reveal = 0;
+      slide17RevealEls.forEach(el => el.classList.remove('revealed'));
+    }
+
+    function tryRevealSlide12() {
+      if (slide12Reveal >= slide12RevealEls.length) return false;
+      slide12RevealEls[slide12Reveal].classList.add('revealed');
+      slide12Reveal++;
+      return true;
+    }
+
+    function tryRevealSlide15() {
+      if (slide15Reveal >= slide15RevealEls.length) return false;
+      slide15RevealEls[slide15Reveal].classList.add('revealed');
+      slide15Reveal++;
+      return true;
+    }
+
+    function tryRevealSlide16() {
+      if (slide16Reveal >= slide16RevealEls.length) return false;
+      slide16RevealEls[slide16Reveal].classList.add('revealed');
+      slide16Reveal++;
+      return true;
+    }
+
+    function tryRevealSlide17() {
+      if (slide17Reveal >= slide17RevealEls.length) return false;
+      slide17RevealEls[slide17Reveal].classList.add('revealed');
+      slide17Reveal++;
+      return true;
+    }
+
+    function goForward() {
+      if (slide12Idx >= 0 && current === slide12Idx && slide12Reveal < slide12RevealEls.length) {
+        tryRevealSlide12();
+        return;
+      }
+      if (slide15Idx >= 0 && current === slide15Idx && slide15Reveal < slide15RevealEls.length) {
+        tryRevealSlide15();
+        return;
+      }
+      if (slide16Idx >= 0 && current === slide16Idx && slide16Reveal < slide16RevealEls.length) {
+        tryRevealSlide16();
+        return;
+      }
+      if (slide17Idx >= 0 && current === slide17Idx && slide17Reveal < slide17RevealEls.length) {
+        tryRevealSlide17();
+        return;
+      }
+      goTo(current + 1);
+    }
+
     function goTo(index) {
       if (animating || index === current || index < 0 || index >= total) return;
       animating = true;
@@ -793,6 +1034,10 @@
       to.classList.add('active');
 
       current = index;
+      if (to === slide12El) resetSlide12Reveal();
+      if (to === slide15El) resetSlide15Reveal();
+      if (to === slide16El) resetSlide16Reveal();
+      if (to === slide17El) resetSlide17Reveal();
       updateUI();
 
       setTimeout(() => { from.classList.remove('exit'); animating = false; }, 700);
@@ -806,28 +1051,48 @@
     }
 
     prevBtn.addEventListener('click', () => goTo(current - 1));
-    nextBtn.addEventListener('click', () => goTo(current + 1));
+    nextBtn.addEventListener('click', () => goForward());
 
     document.addEventListener('keydown', e => {
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
-        e.preventDefault(); goTo(current + 1);
+        e.preventDefault(); goForward();
       }
       if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         e.preventDefault(); goTo(current - 1);
       }
     });
 
+    let pointerDownX = 0;
+    let pointerDownY = 0;
+    document.addEventListener('mousedown', e => {
+      pointerDownX = e.clientX;
+      pointerDownY = e.clientY;
+    });
+
     document.addEventListener('click', e => {
       if (e.target.closest('a, button, nav')) return;
+      const sel = window.getSelection();
+      if (sel && sel.toString().length > 0) return;
+      const dragPx = 8;
+      if (
+        Math.abs(e.clientX - pointerDownX) > dragPx ||
+        Math.abs(e.clientY - pointerDownY) > dragPx
+      ) {
+        return;
+      }
       const mid = window.innerWidth / 2;
-      goTo(e.clientX >= mid ? current + 1 : current - 1);
+      if (e.clientX >= mid) goForward();
+      else goTo(current - 1);
     });
 
     let touchStartX = 0;
     document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     document.addEventListener('touchend', e => {
       const dx = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(dx) > 50) goTo(dx > 0 ? current + 1 : current - 1);
+      if (Math.abs(dx) > 50) {
+        if (dx > 0) goForward();
+        else goTo(current - 1);
+      }
     }, { passive: true });
 
     updateUI();
