@@ -407,6 +407,60 @@
     /* Slides 15–17: selectable / copyable text (deck click-nav otherwise blocks selection) */
     #slide-15,
     #slide-16,
+    /* ── Slide 18 – Landscape mosaic ── */
+    .landscape-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 130px;
+      gap: 10px;
+      width: 100%;
+    }
+    .landscape-tile {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      background: rgba(74,158,255,0.06);
+      border: 1px solid rgba(74,158,255,0.15);
+      cursor: default;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.3s ease,
+                  box-shadow 0.4s ease;
+    }
+    .landscape-tile:hover {
+      transform: scale(1.03);
+      border-color: rgba(74,158,255,0.55);
+      box-shadow: 0 8px 32px rgba(74,158,255,0.18);
+      z-index: 2;
+    }
+    .landscape-tile.span2 { grid-column: span 2; }
+    .landscape-tile.span4 { grid-column: span 4; grid-auto-rows: 100px; }
+    .landscape-tile img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      padding: 16px;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .landscape-tile:hover img { transform: scale(1.06); }
+    .tile-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 6px 10px;
+      font-size: 0.68rem;
+      font-family: var(--f-body);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: linear-gradient(to top, rgba(5,10,20,0.85) 0%, transparent 100%);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .landscape-tile:hover .tile-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     #slide-17 {
       user-select: text;
       -webkit-user-select: text;
@@ -908,10 +962,29 @@
     </div>
   </section>
 
+  <!-- ── Slide 18 – Vibe Coding Landscape ── -->
+  <section class="slide" id="slide-18">
+    <div class="rel" style="width:100%;max-width:1100px;display:flex;flex-direction:column;align-items:center;gap:2rem;">
+      <div class="anim d1" style="text-align:center;">
+        <span class="sec-label">The Ecosystem</span>
+        <h2 class="section-headline" style="font-size:clamp(2rem,4vw,3.2rem);">Vibe Coding Landscape</h2>
+      </div>
+      <div class="landscape-grid anim d2">
+        <div class="landscape-tile span2"><img src="images/Cursor-AI.png" alt="Cursor AI" /><div class="tile-label">Cursor</div></div>
+        <div class="landscape-tile"><img src="images/download.png" alt="Tool" /><div class="tile-label">Windsurf</div></div>
+        <div class="landscape-tile"><img src="images/download-1.png" alt="Tool" /><div class="tile-label">GitHub Copilot</div></div>
+        <div class="landscape-tile"><img src="images/download.jpg" alt="Tool" /><div class="tile-label">Replit</div></div>
+        <div class="landscape-tile span2"><img src="images/download-2.png" alt="Tool" /><div class="tile-label">Bolt.new</div></div>
+        <div class="landscape-tile"><img src="images/download-1.jpg" alt="Tool" /><div class="tile-label">Lovable</div></div>
+        <div class="landscape-tile span4"><img src="images/download-4.png" alt="Tool" /><div class="tile-label">v0 by Vercel</div></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Navigation ── -->
   <nav id="nav">
     <button id="prev-btn" class="nav-btn" disabled aria-label="Previous slide">←</button>
-    <span id="slide-counter">01 / 17</span>
+    <span id="slide-counter">01 / 18</span>
     <button id="next-btn" class="nav-btn" aria-label="Next slide">→</button>
   </nav>
   <p id="key-hint">← → keys</p>
