@@ -407,6 +407,11 @@
     /* Slides 15–17: selectable / copyable text (deck click-nav otherwise blocks selection) */
     #slide-15,
     #slide-16,
+    #slide-17 {
+      user-select: text;
+      -webkit-user-select: text;
+    }
+
     /* ── Slide 18 – Landscape mosaic ── */
     .landscape-grid {
       display: grid;
@@ -433,7 +438,12 @@
       z-index: 2;
     }
     .landscape-tile.span2 { grid-column: span 2; }
-    .landscape-tile.span4 { grid-column: span 4; grid-auto-rows: 100px; }
+    .landscape-tile.dismissed {
+      opacity: 0;
+      transform: scale(0.85);
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
     .landscape-tile img {
       width: 100%; height: 100%;
       object-fit: contain;
@@ -459,11 +469,6 @@
     .landscape-tile:hover .tile-label {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    #slide-17 {
-      user-select: text;
-      -webkit-user-select: text;
     }
 
     /* Vibe coding examples (dense reference slide) */
@@ -976,7 +981,9 @@
         <div class="landscape-tile"><img src="images/download.jpg" alt="Tool" /><div class="tile-label">Replit</div></div>
         <div class="landscape-tile span2"><img src="images/download-2.png" alt="Tool" /><div class="tile-label">Bolt.new</div></div>
         <div class="landscape-tile"><img src="images/download-1.jpg" alt="Tool" /><div class="tile-label">Lovable</div></div>
-        <div class="landscape-tile span4"><img src="images/download-4.png" alt="Tool" /><div class="tile-label">v0 by Vercel</div></div>
+        <div class="landscape-tile"><img src="images/download-5.jpg" alt="Tool" /><div class="tile-label">Claude</div></div>
+        <div class="landscape-tile span2"><img src="images/download-4.png" alt="Tool" /><div class="tile-label">v0 by Vercel</div></div>
+        <div class="landscape-tile"><img src="images/share-ais-03.png" alt="Tool" /><div class="tile-label">Perplexity</div></div>
       </div>
     </div>
   </section>
@@ -1023,6 +1030,13 @@
     const slide17Idx = slide17El ? slides.indexOf(slide17El) : -1;
     const slide17RevealEls = slide17El ? Array.from(slide17El.querySelectorAll('.vibe-item')) : [];
     let slide17Reveal = 0;
+
+    const slide18El = document.getElementById('slide-18');
+    const slide18Tiles = slide18El ? Array.from(slide18El.querySelectorAll('.landscape-tile')) : [];
+
+    function resetSlide18Tiles() {
+      slide18Tiles.forEach(t => t.classList.remove('dismissed'));
+    }
 
     function resetSlide12Reveal() {
       slide12Reveal = 0;
@@ -1111,6 +1125,7 @@
       if (to === slide15El) resetSlide15Reveal();
       if (to === slide16El) resetSlide16Reveal();
       if (to === slide17El) resetSlide17Reveal();
+      if (from === slide18El) resetSlide18Tiles();
       updateUI();
 
       setTimeout(() => { from.classList.remove('exit'); animating = false; }, 700);
@@ -1140,6 +1155,14 @@
     document.addEventListener('mousedown', e => {
       pointerDownX = e.clientX;
       pointerDownY = e.clientY;
+    });
+
+    // Slide 18 — click a tile to dismiss it
+    document.querySelectorAll('#slide-18 .landscape-tile').forEach(tile => {
+      tile.addEventListener('click', e => {
+        e.stopPropagation();
+        tile.classList.add('dismissed');
+      });
     });
 
     document.addEventListener('click', e => {
