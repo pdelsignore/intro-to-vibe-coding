@@ -339,11 +339,11 @@
     /* Bracketed accent text */
     .bracket { color: var(--accent); font-style: normal; }
 
-    /* Slide 12, 15–16, 19 — click-to-reveal rows (counter unchanged; forward advances reveal) */
+    /* Slide 12, 15–17 — click-to-reveal rows (counter unchanged; forward advances reveal) */
     #slide-12 .vibe-item,
     #slide-15 .vibe-item,
     #slide-16 .vibe-item,
-    #slide-19 .vibe-item {
+    #slide-17 .vibe-item {
       opacity: 0;
       transform: translateY(22px);
       transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
@@ -352,7 +352,7 @@
     #slide-12 .vibe-item.revealed,
     #slide-15 .vibe-item.revealed,
     #slide-16 .vibe-item.revealed,
-    #slide-19 .vibe-item.revealed {
+    #slide-17 .vibe-item.revealed {
       opacity: 1;
       transform: translateY(0);
     }
@@ -367,10 +367,10 @@
       transform: translateY(0);
     }
 
-    /* Slides 15–16, 19 — centered title + vibe-scale copy (match) */
+    /* Slides 15–17 — centered title + vibe-scale copy (match) */
     #slide-15 .rel,
     #slide-16 .rel,
-    #slide-19 .rel {
+    #slide-17 .rel {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -378,10 +378,10 @@
     }
     #slide-15 .section-headline,
     #slide-16 .section-headline,
-    #slide-19 .section-headline { margin-bottom: 0.5rem; }
+    #slide-17 .section-headline { margin-bottom: 0.5rem; }
     #slide-15 .vibe-list,
     #slide-16 .vibe-list,
-    #slide-19 .vibe-list {
+    #slide-17 .vibe-list {
       width: 100%;
       max-width: 42rem;
       margin: 2rem auto 0;
@@ -389,34 +389,30 @@
     }
     #slide-15 .vibe-item,
     #slide-16 .vibe-item,
-    #slide-19 .vibe-item {
+    #slide-17 .vibe-item {
       align-items: flex-start;
       justify-content: flex-start;
     }
     #slide-15 .vibe-text,
     #slide-16 .vibe-text,
-    #slide-19 .vibe-text {
+    #slide-17 .vibe-text {
       line-height: 1.55;
     }
     #slide-15 .bracket,
     #slide-16 .bracket,
-    #slide-19 .bracket {
+    #slide-17 .bracket {
       color: #b8a5e8;
     }
 
-    /* Slides 15–16, 19: selectable / copyable text (deck click-nav otherwise blocks selection) */
+    /* Slides 15–17: selectable / copyable text (deck click-nav otherwise blocks selection) */
     #slide-15,
     #slide-16,
-    #slide-19 {
+    #slide-17 {
       user-select: text;
       -webkit-user-select: text;
     }
 
-    /* ── Slide 18 – Innovation Summit sessions ── */
-    #slide-18 a:hover { background: rgba(74,158,255,0.12); }
-    #slide-18 li:hover { border-color: rgba(74,158,255,0.5) !important; background: rgba(74,158,255,0.12) !important; }
-
-    /* ── Slide 17 – Landscape mosaic ── */
+    /* ── Slide 18 – Landscape mosaic ── */
     .landscape-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -904,87 +900,32 @@
        ══════════════════════════════════════════ -->
   <section class="slide prompt-slide" id="slide-16">
     <div class="slide-bg">
-      <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2560&auto=format&fit=crop" alt="" aria-hidden="true" />
+      <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2560&auto=format&fit=crop" alt="" aria-hidden="true" />
     </div>
     <div class="rel" style="width:100%;max-width:900px;">
       <span class="sec-label">Example Prompt 01</span>
-      <h2 class="section-headline">Budget Dashboard</h2>
+      <h2 class="section-headline">Daily Inspiration App</h2>
       <ul class="vibe-list">
         <li class="vibe-item">
           <span class="vibe-arrow">→</span>
-          <span class="vibe-text">I want to build a <span class="bracket">budget variance dashboard app to better manage my company's spend. It should have a table with these columns: Category, Planned Budget, Actual Spend, Variance (dollar amount), and Variance (percentage). For now, pre-populate it with 6 sample rows using realistic finance categories like Payroll, Marketing, Software Licenses, Travel, Office Supplies, and Consulting Fees. Make the variance cells green when under budget and red when over budget.</span></span>
+          <span class="vibe-text">I want to build an app that <span class="bracket">pulls quotes from inspirational leaders and provides daily motivational life lessons — short stories from real people that teach lessons about life and success</span>.</span>
         </li>
         <li class="vibe-item">
           <span class="vibe-arrow">→</span>
-          <span class="vibe-text">It's for <span class="bracket">my finance department</span> who struggle with <span class="bracket">having a centralized visual display of variance</span>.</span>
+          <span class="vibe-text">It's for <span class="bracket">myself or anyone who needs a daily life lesson</span> to <span class="bracket">ground themselves in reality during moments when they need inspiration</span>.</span>
         </li>
         <li class="vibe-item">
           <span class="vibe-arrow">→</span>
-          <span class="vibe-text">The app should feel <span class="bracket">simple, easy to read</span> and look <span class="bracket">clean and minimalistic</span>. Use colors like <span class="bracket">red, green and purple</span>.</span>
+          <span class="vibe-text">The app should feel <span class="bracket">zen-like and calm</span> and look <span class="bracket">minimalistic and beautiful</span>. Use <span class="bracket">pastel colors and light tones</span> with <span class="bracket">gentle, soothing animations and sounds</span>.</span>
         </li>
       </ul>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════
-       SLIDE 14 — EXAMPLE PROMPT 2: OKR TRACKER
+       SLIDE 17 — EXAMPLE PROMPT 2: OKR TRACKER
        ══════════════════════════════════════════ -->
-  <!-- ── Slide 17 – Vibe Coding Landscape ── -->
-  <section class="slide" id="slide-17">
-    <div class="rel" style="width:100%;max-width:1100px;display:flex;flex-direction:column;align-items:center;gap:2rem;">
-      <div class="anim d1" style="text-align:center;">
-        <span class="sec-label">The Ecosystem</span>
-        <h2 class="section-headline" style="font-size:clamp(2rem,4vw,3.2rem);">Vibe Coding Landscape</h2>
-      </div>
-      <div class="landscape-grid anim d2">
-        <div class="landscape-tile span2"><img src="images/Cursor-AI.png" alt="Cursor AI" /><div class="tile-label">Cursor</div></div>
-        <div class="landscape-tile"><img src="images/download.png" alt="Tool" /><div class="tile-label">Windsurf</div></div>
-        <div class="landscape-tile"><img src="images/download-1.png" alt="Tool" /><div class="tile-label">GitHub Copilot</div></div>
-        <div class="landscape-tile"><img src="images/download.jpg" alt="Tool" /><div class="tile-label">Replit</div></div>
-        <div class="landscape-tile span2"><img src="images/download-2.png" alt="Tool" /><div class="tile-label">Bolt.new</div></div>
-        <div class="landscape-tile"><img src="images/download-1.jpg" alt="Tool" /><div class="tile-label">Lovable</div></div>
-        <div class="landscape-tile"><img src="images/download-5.jpg" alt="Tool" /><div class="tile-label">Claude</div></div>
-        <div class="landscape-tile span2"><img src="images/download-4.png" alt="Tool" /><div class="tile-label">v0 by Vercel</div></div>
-        <div class="landscape-tile"><img src="images/share-ais-03.png" alt="Tool" /><div class="tile-label">Perplexity</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Slide 18 – Innovation Summit Sessions ── -->
-  <section class="slide" id="slide-18">
-    <div class="rel" style="width:100%;max-width:860px;display:flex;flex-direction:column;align-items:center;gap:2.5rem;">
-      <div class="anim d1" style="text-align:center;">
-        <span class="sec-label">What's Next</span>
-        <h2 class="section-headline" style="font-size:clamp(1.8rem,3.8vw,3rem);">Innovation Summit Sessions</h2>
-        <p style="color:rgba(255,255,255,0.55);font-size:clamp(0.85rem,1.4vw,1rem);margin-top:0.4rem;">Follow-up sessions to go deeper</p>
-      </div>
-      <ul class="anim d2" style="list-style:none;margin:0;padding:0;width:100%;display:flex;flex-direction:column;gap:1.25rem;">
-        <li style="background:rgba(74,158,255,0.07);border:1px solid rgba(74,158,255,0.2);border-radius:12px;padding:1.25rem 1.75rem;transition:border-color 0.25s,background 0.25s;">
-          <a href="https://events.teams.microsoft.com/event/8757516e-4960-4867-9312-836e426a4001@8cc434d7-97d0-47d3-b5c5-14fe0e33e34b" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:1rem;text-decoration:none;color:inherit;">
-            <span style="font-size:1.5rem;">🤖</span>
-            <span style="font-size:clamp(1rem,1.8vw,1.2rem);font-weight:600;color:#fff;">Vibe Coding for Influence</span>
-            <span style="margin-left:auto;font-size:0.85rem;color:rgba(74,158,255,0.9);white-space:nowrap;">Register →</span>
-          </a>
-        </li>
-        <li style="background:rgba(74,158,255,0.07);border:1px solid rgba(74,158,255,0.2);border-radius:12px;padding:1.25rem 1.75rem;transition:border-color 0.25s,background 0.25s;">
-          <a href="https://events.teams.microsoft.com/event/000140e3-efc5-40c4-bb06-5bc2136bf064@8cc434d7-97d0-47d3-b5c5-14fe0e33e34b" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:1rem;text-decoration:none;color:inherit;">
-            <span style="font-size:1.5rem;">🎨</span>
-            <span style="font-size:clamp(1rem,1.8vw,1.2rem);font-weight:600;color:#fff;">Innovation Jam — Retro Reskin by Google</span>
-            <span style="margin-left:auto;font-size:0.85rem;color:rgba(74,158,255,0.9);white-space:nowrap;">Register →</span>
-          </a>
-        </li>
-        <li style="background:rgba(74,158,255,0.07);border:1px solid rgba(74,158,255,0.2);border-radius:12px;padding:1.25rem 1.75rem;transition:border-color 0.25s,background 0.25s;">
-          <a href="https://events.teams.microsoft.com/event/353629db-6773-4672-a7bf-74c5245f8807@8cc434d7-97d0-47d3-b5c5-14fe0e33e34b" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:1rem;text-decoration:none;color:inherit;">
-            <span style="font-size:1.5rem;">⚡</span>
-            <span style="font-size:clamp(1rem,1.8vw,1.2rem);font-weight:600;color:#fff;">Creating Skills for AI Agents</span>
-            <span style="margin-left:auto;font-size:0.85rem;color:rgba(74,158,255,0.9);white-space:nowrap;">Register →</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="slide prompt-slide" id="slide-19">
+  <section class="slide prompt-slide" id="slide-17">
     <div class="slide-bg">
       <img src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=2560&auto=format&fit=crop" alt="" aria-hidden="true" />
     </div>
@@ -1008,10 +949,31 @@
     </div>
   </section>
 
+  <!-- ── Slide 18 – Vibe Coding Landscape ── -->
+  <section class="slide" id="slide-18">
+    <div class="rel" style="width:100%;max-width:1100px;display:flex;flex-direction:column;align-items:center;gap:2rem;">
+      <div class="anim d1" style="text-align:center;">
+        <span class="sec-label">The Ecosystem</span>
+        <h2 class="section-headline" style="font-size:clamp(2rem,4vw,3.2rem);">Vibe Coding Landscape</h2>
+      </div>
+      <div class="landscape-grid anim d2">
+        <div class="landscape-tile span2"><img src="images/Cursor-AI.png" alt="Cursor AI" /><div class="tile-label">Cursor</div></div>
+        <div class="landscape-tile"><img src="images/download.png" alt="Tool" /><div class="tile-label">Windsurf</div></div>
+        <div class="landscape-tile"><img src="images/download-1.png" alt="Tool" /><div class="tile-label">GitHub Copilot</div></div>
+        <div class="landscape-tile"><img src="images/download.jpg" alt="Tool" /><div class="tile-label">Replit</div></div>
+        <div class="landscape-tile span2"><img src="images/download-2.png" alt="Tool" /><div class="tile-label">Bolt.new</div></div>
+        <div class="landscape-tile"><img src="images/download-1.jpg" alt="Tool" /><div class="tile-label">Lovable</div></div>
+        <div class="landscape-tile"><img src="images/download-5.jpg" alt="Tool" /><div class="tile-label">Claude</div></div>
+        <div class="landscape-tile span2"><img src="images/download-4.png" alt="Tool" /><div class="tile-label">v0 by Vercel</div></div>
+        <div class="landscape-tile"><img src="images/share-ais-03.png" alt="Tool" /><div class="tile-label">Perplexity</div></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Navigation ── -->
   <nav id="nav">
     <button id="prev-btn" class="nav-btn" disabled aria-label="Previous slide">←</button>
-    <span id="slide-counter">01 / 19</span>
+    <span id="slide-counter">01 / 18</span>
     <button id="next-btn" class="nav-btn" aria-label="Next slide">→</button>
   </nav>
   <p id="key-hint">← → keys</p>
@@ -1047,17 +1009,15 @@
     let slide16Reveal = 0;
 
     const slide17El = document.getElementById('slide-17');
-    const slide17Tiles = slide17El ? Array.from(slide17El.querySelectorAll('.landscape-tile')) : [];
+    const slide17Idx = slide17El ? slides.indexOf(slide17El) : -1;
+    const slide17RevealEls = slide17El ? Array.from(slide17El.querySelectorAll('.vibe-item')) : [];
+    let slide17Reveal = 0;
 
     const slide18El = document.getElementById('slide-18');
+    const slide18Tiles = slide18El ? Array.from(slide18El.querySelectorAll('.landscape-tile')) : [];
 
-    const slide19El = document.getElementById('slide-19');
-    const slide19Idx = slide19El ? slides.indexOf(slide19El) : -1;
-    const slide19RevealEls = slide19El ? Array.from(slide19El.querySelectorAll('.vibe-item')) : [];
-    let slide19Reveal = 0;
-
-    function resetSlide17Tiles() {
-      slide17Tiles.forEach(t => t.classList.remove('dismissed'));
+    function resetSlide18Tiles() {
+      slide18Tiles.forEach(t => t.classList.remove('dismissed'));
     }
 
     function resetSlide12Reveal() {
@@ -1075,9 +1035,9 @@
       slide16RevealEls.forEach(el => el.classList.remove('revealed'));
     }
 
-    function resetSlide19Reveal() {
-      slide19Reveal = 0;
-      slide19RevealEls.forEach(el => el.classList.remove('revealed'));
+    function resetSlide17Reveal() {
+      slide17Reveal = 0;
+      slide17RevealEls.forEach(el => el.classList.remove('revealed'));
     }
 
     function tryRevealSlide12() {
@@ -1101,10 +1061,10 @@
       return true;
     }
 
-    function tryRevealSlide19() {
-      if (slide19Reveal >= slide19RevealEls.length) return false;
-      slide19RevealEls[slide19Reveal].classList.add('revealed');
-      slide19Reveal++;
+    function tryRevealSlide17() {
+      if (slide17Reveal >= slide17RevealEls.length) return false;
+      slide17RevealEls[slide17Reveal].classList.add('revealed');
+      slide17Reveal++;
       return true;
     }
 
@@ -1121,8 +1081,8 @@
         tryRevealSlide16();
         return;
       }
-      if (slide19Idx >= 0 && current === slide19Idx && slide19Reveal < slide19RevealEls.length) {
-        tryRevealSlide19();
+      if (slide17Idx >= 0 && current === slide17Idx && slide17Reveal < slide17RevealEls.length) {
+        tryRevealSlide17();
         return;
       }
       goTo(current + 1);
@@ -1146,8 +1106,8 @@
       if (to === slide12El) resetSlide12Reveal();
       if (to === slide15El) resetSlide15Reveal();
       if (to === slide16El) resetSlide16Reveal();
-      if (to === slide19El) resetSlide19Reveal();
-      if (from === slide17El) resetSlide17Tiles();
+      if (to === slide17El) resetSlide17Reveal();
+      if (from === slide18El) resetSlide18Tiles();
       updateUI();
 
       setTimeout(() => { from.classList.remove('exit'); animating = false; }, 700);
@@ -1179,8 +1139,8 @@
       pointerDownY = e.clientY;
     });
 
-    // Slide 17 — click a tile to dismiss it
-    document.querySelectorAll('#slide-17 .landscape-tile').forEach(tile => {
+    // Slide 18 — click a tile to dismiss it
+    document.querySelectorAll('#slide-18 .landscape-tile').forEach(tile => {
       tile.addEventListener('click', e => {
         e.stopPropagation();
         tile.classList.add('dismissed');
